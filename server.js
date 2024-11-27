@@ -36,7 +36,9 @@ connectDB();
 
 // Middleware
 const corsOptions = {
-  origin: '*', // Allows requests from any origin
+  origin: 'https://hilarious-salamander-0fa7c0.netlify.app', // Allow your frontend's origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow cookies and headers like Authorization
 };
 app.use(cors(corsOptions));
 app.use(express.json());
