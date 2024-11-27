@@ -8,7 +8,11 @@ const QRCode = require('qrcode');
 const cloudinary = require('cloudinary').v2;
 
 // Configure Cloudinary
-cloudinary.config(); 
+cloudinary.config({
+  cloud_name: 'delwraixa',
+  api_key: '354242333558914',
+  api_secret: 'bXRyzeB89ex3ayPQY0gAel_pcC8',
+}); 
 
 // User signup
 const signup = async (req, res) => {
@@ -26,7 +30,7 @@ const signup = async (req, res) => {
     await newUser.save();
 
     // Generate the unique URL
-    const uniqueUrl = `http://localhost:3000/form?uniqueId=${newUser.uniqueId}`;
+    const uniqueUrl = `https://hilarious-salamander-0fa7c0.netlify.app/form?uniqueId=${newUser.uniqueId}`;
 
     // Generate the QR code in buffer format
     const qrBuffer = await QRCode.toBuffer(uniqueUrl);
