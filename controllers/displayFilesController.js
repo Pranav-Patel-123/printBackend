@@ -1,6 +1,12 @@
 require("dotenv").config(); // Ensure Cloudinary URL is loaded from environment variables
 const cloudinary = require("cloudinary").v2;
 
+cloudinary.config({
+  cloud_name: 'delwraixa',
+  api_key: '354242333558914',
+  api_secret: 'bXRyzeB89ex3ayPQY0gAel_pcC8',
+});
+
 // Controller to fetch files for a uniqueId from Cloudinary
 const getFilesByUniqueId = async (req, res) => {
   const { uniqueId } = req.params;
