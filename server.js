@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const fileRoutes = require('./routes/fileRoutes');
 const displayfilesRoutes = require('./routes/displayfilesRoutes');
@@ -9,8 +9,23 @@ const displayQrRoutes = require('./routes/displayQrRoutes');
 const cors = require('cors');
 const path = require('path');
 
+// Load environment variables
 dotenv.config();
 const app = express();
+
+// MongoDB connection
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1); // Exit the process if MongoDB connection fails
+  }
+};
 
 // Connect to MongoDB
 connectDB();
@@ -26,7 +41,6 @@ app.use("/api/displayfiles", displayfilesRoutes); // Display files by uniqueId
 app.use("/api/qrcode", displayQrRoutes);
 // app.use("/api", printRoutes);
 
-
 // Start server
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000; // Default to 5000 if PORT is not set
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
