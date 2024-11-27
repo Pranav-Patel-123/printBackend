@@ -16,10 +16,14 @@ const app = express();
 // MongoDB connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    // Directly use the MongoDB connection string here
+    const mongoURI = 'mongodb+srv://test:3dGQuUYsGJiehTSl@cluster0.yttrefz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+    await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+
     console.log('MongoDB connected');
   } catch (error) {
     console.error('MongoDB connection error:', error);
