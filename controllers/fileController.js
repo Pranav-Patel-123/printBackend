@@ -5,7 +5,11 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const File = require("../models/File"); // Import the File model
 
 // Cloudinary is automatically configured using CLOUDINARY_URL
-cloudinary.config(); // This will use CLOUDINARY_URL from the environment variables
+cloudinary.config({
+  cloud_name: 'delwraixa',
+  api_key: '354242333558914',
+  api_secret: 'bXRyzeB89ex3ayPQY0gAel_pcC8',
+});
 
 // Multer configuration with Cloudinary storage
 const storage = new CloudinaryStorage({
