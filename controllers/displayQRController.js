@@ -1,5 +1,9 @@
 const cloudinary = require("cloudinary").v2;
-
+cloudinary.config({
+  cloud_name: 'delwraixa',
+  api_key: '354242333558914',
+  api_secret: 'bXRyzeB89ex3ayPQY0gAel_pcC8',
+});
 // Controller to fetch QR code for a uniqueId
 const getQrCode = async (req, res) => {
   const { uniqueId } = req.params;
