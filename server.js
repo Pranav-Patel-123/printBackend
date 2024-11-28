@@ -35,8 +35,21 @@ const connectDB = async () => {
 connectDB();
 
 // Middleware
+const allowedOrigins = [
+  'https://hilarious-salamander-0fa7c0.netlify.app',
+  'https://inspiring-pika-045528.netlify.app'
+];
+
 const corsOptions = {
-  origin: 'https://hilarious-salamander-0fa7c0.netlify.app', // Allow your frontend's origin
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests with no origin (like mobile apps) or matching origins
+      callback(null, true);
+    } else {
+      // Reject requests with origins not in the list
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies and headers like Authorization
 };
