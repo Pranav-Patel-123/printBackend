@@ -30,7 +30,7 @@ const signup = async (req, res) => {
     await newUser.save();
 
     // Generate the unique URL
-    const uniqueUrl = `https://hilarious-salamander-0fa7c0.netlify.app/form?uniqueId=${newUser.uniqueId}`;
+    const uniqueUrl = `https://inspiring-pika-045528.netlify.app/#/form?uniqueId=${newUser.uniqueId}`;
 
     // Generate the QR code in buffer format
     const qrBuffer = await QRCode.toBuffer(uniqueUrl);
